@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoAgro Dash — Simulador Sustentável</title>
+  <meta name="description" content="Simulador interativo que equilibra produção agrícola, lucro e meio ambiente. Projeto Agrinho 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Fundo animado -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+  <div class="bg-orb orb-3" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-mark">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3C9 3 4 8 4 15c0 8 7 14 12 14s12-6 12-14C28 8 23 3 16 3Z" stroke="url(#g1)" stroke-width="2"/>
+          <path d="M16 29V14M16 14c-3-2-7-2-9 0M16 14c3-2 7-2 9 0" stroke="url(#g1)" stroke-width="2" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#5EEAD4"/>
+              <stop offset="1" stop-color="#34D399"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>EcoAgro <span>Dash</span></h1>
+        <p>Simulador de equilíbrio entre produção e ecossistema</p>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="dot live"></span>
+      <span class="mono">SISTEMA ONLINE • v2.0</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- HUD principal -->
+    <section class="panel hero">
+      <div class="panel-header">
+        <h2>Status da Fazenda</h2>
+        <span class="badge">Tempo Real</span>
+      </div>
+
+      <div class="metrics">
+        <div class="metric" data-key="prod">
+          <div class="metric-top">
+            <div class="metric-label"><span class="ico">🚜</span> Produção de Alimentos</div>
+            <div class="metric-value mono"><span id="val-prod">50</span><small>/100</small></div>
+          </div>
+          <div class="bar-container"><div id="bar-prod" class="bar bar-prod" style="width:50%"></div></div>
+        </div>
+
+        <div class="metric" data-key="money">
+          <div class="metric-top">
+            <div class="metric-label"><span class="ico">💰</span> Orçamento / Lucro</div>
+            <div class="metric-value mono"><span id="val-money">50</span><small>/100</small></div>
+          </div>
+          <div class="bar-container"><div id="bar-money" class="bar bar-money" style="width:50%"></div></div>
+        </div>
+
+        <div class="metric" data-key="env">
+          <div class="metric-top">
+            <div class="metric-label"><span class="ico">🌳</span> Saúde Ambiental</div>
+            <div class="metric-value mono"><span id="val-env">50</span><small>/100</small></div>
+          </div>
+          <div class="bar-container"><div id="bar-env" class="bar bar-env" style="width:50%"></div></div>
+        </div>
+      </div>
+
+      <div class="score-row">
+        <div class="score">
+          <span class="mono small">ÍNDICE DE EQUILÍBRIO</span>
+          <strong id="score">50</strong>
+        </div>
+        <div class="turn">
+          <span class="mono small">TURNO</span>
+          <strong id="turn" class="mono">01</strong>
+        </div>
+        <button id="reset" class="btn-ghost">↺ Reiniciar</button>
+      </div>
+    </section>
+
+    <!-- Decisões -->
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Ações Tecnológicas</h2>
+        <span class="badge alt">Escolha com sabedoria</span>
+      </div>
+
+      <div class="buttons-grid">
+        <button class="action danger" data-action="agrotoxico">
+          <span class="action-ico">⚠️</span>
+          <span class="action-title">Agrotóxico Pesado</span>
+          <span class="action-desc">+ Produção rápida<br>− Impacto ambiental severo</span>
+        </button>
+        <button class="action good" data-action="biologico">
+          <span class="action-ico">🐞</span>
+          <span class="action-title">Controle Biológico</span>
+          <span class="action-desc">+ Fauna protegida<br>− Custo moderado</span>
+        </button>
+        <button class="action info" data-action="irrigacao">
+          <span class="action-ico">💧</span>
+          <span class="action-title">Irrigação Gota a Gota</span>
+          <span class="action-desc">+ Economia de água<br>− Investimento inicial</span>
+        </button>
+        <button class="action forest" data-action="floresta">
+          <span class="action-ico">🌲</span>
+          <span class="action-title">Reflorestar Margens</span>
+          <span class="action-desc">+ Solo e água protegidos<br>− Menos área plantada</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Feedback -->
+    <section class="panel feedback">
+      <div class="feedback-ico" id="feedback-ico">🌱</div>
+      <p id="mensagem-alerta">Bem-vindo, agricultor. Tome decisões para manter sua fazenda próspera <strong>e</strong> sustentável.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Projeto desenvolvido para o <strong>Concurso Agrinho 2026</strong></p>
+    <p class="mono small">© EcoAgro Dash • Tecnologia a serviço do campo</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
